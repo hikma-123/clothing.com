@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clothing Retailer - Men's Fashion</title>
+    <style>
+        /* Reset and base */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* Main content */
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+        }
+
+        main h2.section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f0c140;
+            display: inline-block;
+            padding-bottom: 5px;
+            color: #131921;
+        }
+
+        /* Product grid */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 0 0 8px;
+            color: #131921;
+            min-height: 48px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #f0c140;
+            margin-bottom: 6px;
+        }
+
+        .product-rating {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .product-delivery {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 12px;
+        }
+
+        .btn-add-cart {
+            background-color: #f0c140;
+            color: #131921;
+            border: none;
+            padding: 10px 0;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-add-cart:hover,
+        .btn-add-cart:focus {
+            background-color: #d1a72a;
+            outline: none;
+        }
+
+        /* Footer */
+
+        footer {
+            background-color: #131921;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #f0c140;
+            margin: 0 8px;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="siteNav" role="navigation" aria-label="Primary Navigation"
+        style="background-color: #181c24;">
+        <div class="nav-inner">
+            <!-- Brand -->
+            <a href="/" class="brand" aria-label="Clothing Retailer Home">
+                <div class="logo" aria-hidden="true" style="color: #f0c140;">CR</div>
+                <div class="brand-text">
+                    <span class="title" style="color: #f0c140;">Clothing Retailer</span><br>
+                    <span class="subtitle" style="color: #b0b6c1;">Professional Collection</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li><a role="menuitem" href="#men" style="color: #eaeaea;">Men</a></li>
+                <li><a role="menuitem" href="#women" style="color: #eaeaea;">Women</a></li>
+                <li><a role="menuitem" href="#kids" style="color: #eaeaea;">Kids</a></li>
+                <li><a role="menuitem" href="#new-arrivals" style="color: #eaeaea;">New Arrivals</a></li>
+                <li><a role="menuitem" href="#promotions" style="color: #eaeaea;">Promotions</a></li>
+            </ul>
+
+            <!-- Right Controls -->
+            <div class="actions">
+                <input type="text" placeholder="Search..." class="search-bar" aria-label="Search Products" />
+                <button class="icon-btn" aria-label="Cart">🛒</button>
+                <button class="btn btn-primary" id="openNewsletter">Subscribe</button>
+                <button class="mobile-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        /* Base */
+
+        body {
+            margin: 0;
+            font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #fdfdfd;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+        }
+
+        /* Navbar */
+
+        .navbar {
+            background-color: #000 !important;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-inner {
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Brand */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #d4b483;
+        }
+
+        .brand-text .title {
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-text .subtitle {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        /* Links */
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4b483;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+
+        .nav-links a:hover {
+            color: #d4b483;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Actions */
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-bar {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .icon-btn:hover {
+            color: #d4b483;
+        }
+
+        .btn-primary {
+            background: #d4b483;
+            border: none;
+            padding: 6px 14px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #b8935c;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #111;
+                width: 100%;
+                padding: 15px 0;
+                margin-top: 10px;
+                border-radius: 6px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .search-bar {
+                display: none;
+            }
+        }
+    </style>
+
+    <script>
+        // Mobile nav toggle
+        document.getElementById("navToggle").addEventListener("click", function () {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("show");
+
+            const expanded = this.getAttribute("aria-expanded") === "true" || false;
+            this.setAttribute("aria-expanded", !expanded);
+        });
+    </script>
+</body>
+
+<main>
+    <!-- Men's Section -->
+    <section id="men" aria-label="Men's Fashion" style="margin-top: 60px;">
+        <h2 class="section-title">Men's Fashion</h2>
+        <div class="product-grid">
+            <!-- Row 1 -->
+            <article class="product-card" tabindex="0">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.bIcuXU9MGrYTj_F71JCChgHaJ4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Men's Formal Shirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Formal Shirt</h3>
+                    <p class="product-price">$54.99</p>
+                    <p class="product-rating">4.3 stars, 670 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://st.depositphotos.com/1006318/4356/i/450/depositphotos_43565675-stock-photo-serious-man-wearing-leather-jacket.jpg"
+                    alt="Men's Leather Jacket" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Leather Jacket</h3>
+                    <p class="product-price">$129.99</p>
+                    <p class="product-rating">4.8 stars, 980 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.WjqaDuqEhNX6aR4tHW7EegAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Men's Casual T-shirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Casual T-shirt</h3>
+                    <p class="product-price">$29.99</p>
+                    <p class="product-rating">4.1 stars, 500 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://img.freepik.com/premium-psd/hoodie-mockup_608451-4562.jpg" alt="Men's Hoodie" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Hoodie</h3>
+                    <p class="product-price">$69.99</p>
+                    <p class="product-rating">4.5 stars, 780 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&w=400"
+                    alt="Men's Sneakers" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Sneakers</h3>
+                    <p class="product-price">$89.00</p>
+                    <p class="product-rating">4.7 stars, 1200 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- Row 2 -->
+            <article class="product-card" tabindex="0">
+                <img src="https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&w=400"
+                    alt="Men's Sunglasses" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Sunglasses</h3>
+                    <p class="product-price">$49.99</p>
+                    <p class="product-rating">4.6 stars, 320 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.UUUOKnU7N0FTnV_FeV8ShQHaLE?w=204&h=305&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Men's Slim Fit Jeans" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Slim Fit Jeans</h3>
+                    <p class="product-price">$74.50</p>
+                    <p class="product-rating">4.4 stars, 640 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.MaLcd-lPbiFkPx9hJu7mdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Men's Classic Watch" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Classic Watch</h3>
+                    <p class="product-price">$120.00</p>
+                    <p class="product-rating">4.9 stars, 1500 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.2yGmh-_XK_LPbrvRvITvDAHaHa?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Men's Polo Shirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Polo Shirt</h3>
+                    <p class="product-price">$45.00</p>
+                    <p class="product-rating">4.2 stars, 520 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2024/2/389475583/CW/LY/FP/80311515/whatsapp-image-2024-02-09-at-2-17-08-pm-500x500.jpeg"
+                    alt="Men's Sports Shoes" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Sports Shoes</h3>
+                    <p class="product-price">$110.00</p>
+                    <p class="product-rating">4.8 stars, 1340 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- Row 3 -->
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.bu9OqKx7B75kcehrkHXXeAHaHa?w=190&h=190&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Men's Backpack" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Backpack</h3>
+                    <p class="product-price">$59.99</p>
+                    <p class="product-rating">4.5 stars, 430 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.cuP16yO_ap6-HyMOWGJKHgHaHa?w=192&h=192&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Men's Casual Shorts" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Casual Shorts</h3>
+                    <p class="product-price">$39.99</p>
+                    <p class="product-rating">4.1 stars, 280 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.rnyisaPkkxHxQOyWktKKagHaLK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Men's Winter Coat" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Winter Coat</h3>
+                    <p class="product-price">$150.00</p>
+                    <p class="product-rating">4.7 stars, 720 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.eum-_0c127tCadvywCWcFgHaHa?w=167&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Men's Formal Shoes" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Formal Shoes</h3>
+                    <p class="product-price">$95.00</p>
+                    <p class="product-rating">4.6 stars, 650 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.K7LFKhiOZhEKuLj478OLqAHaJh?rs=1&pid=ImgDetMain&o=7&rm="
+                    alt="Men's Casual Blazer" />
+                <div class="product-info">
+                    <h3 class="product-title">Men Expert Derma Control Purifying Cleansing Gel</h3>
+                    <p class="product-price">$15.00</p>
+                    <p class="product-rating">4.5 stars, 520 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.cFn_apT5pARag-IBnF6Y3QHaHa?w=200&h=200&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Men's Casual Blazer" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Casual Blazer</h3>
+                    <p class="product-price">$135.00</p>
+                    <p class="product-rating">4.5 stars, 520 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Women's Section -->
+    <section id="women" aria-label="Women's Fashion" style="margin-top: 60px;">
+        <h2 class="section-title">Women's Fashion</h2>
+        <div class="product-grid">
+            <!-- 15 Women's Fashion Cards -->
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.ZjRNSnaY_gbOm1H8mtSJUwHaHa?w=178&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Women's Handbag" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Handbag</h3>
+                    <p class="product-price">$85.99</p>
+                    <p class="product-rating">4.6 stars, 800 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.QEzc5v3r_pfaZ1adj9YKRQHaJ3?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Floral Summer Dress" />
+                <div class="product-info">
+                    <h3 class="product-title">Floral Summer Dress</h3>
+                    <p class="product-price">$59.99</p>
+                    <p class="product-rating">4.4 stars, 650 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.NzxqwLI-PzQHPoQGUDAz4QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Women's Sunglasses" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Sunglasses</h3>
+                    <p class="product-price">$39.50</p>
+                    <p class="product-rating">4.7 stars, 1,200 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.cakJPSNPdLEXAcvNduuJ-gHaJ4?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Women's Jacket" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Jacket</h3>
+                    <p class="product-price">$120.00</p>
+                    <p class="product-rating">4.8 stars, 940 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/R.d3310451fa5bf95468fbe5cf2236b62c?rik=hcVbwyRaF01YOA&riu=http%3a%2f%2f1.bp.blogspot.com%2f--zn9lHbAdTc%2fU2fBWEf-kuI%2fAAAAAAAADzo%2f8aMrlocvHg8%2fs1600%2fLatest-High-Heels-14.jpg&ehk=A2wpEWtzlMy%2b3CtJRqMvKCV6iEqxKfpeZczQao4BiUA%3d&risl=&pid=ImgRaw&r=0"
+                    alt="High Heels" />
+                <div class="product-info">
+                    <h3 class="product-title">High Heels</h3>
+                    <p class="product-price">$72.99</p>
+                    <p class="product-rating">4.5 stars, 710 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- Row 2 -->
+            <article class="product-card" tabindex="0">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.cwSwvBYKUDqOgTvywUr9agHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Casual T-shirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Casual T-shirt</h3>
+                    <p class="product-price">$25.99</p>
+                    <p class="product-rating">4.3 stars, 520 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://zigzag.lk/cdn/shop/files/27_b7cc6997-7151-4b1a-a077-674f7240bd26_619x.progressive.jpg?v=1735552664"
+                    alt="Women's Jeans" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Jeans</h3>
+                    <p class="product-price">$64.99</p>
+                    <p class="product-rating">4.6 stars, 780 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.6jmlWK8VoANZi4Oo06kn1AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Women's Scarf" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Scarf</h3>
+                    <p class="product-price">$29.99</p>
+                    <p class="product-rating">4.2 stars, 410 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.GMMXAXWq9E7PupEnTbYfHQHaHa?w=190&h=190&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Women's Watch" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Watch</h3>
+                    <p class="product-price">$150.00</p>
+                    <p class="product-rating">4.9 stars, 1,450 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.opcAEyKOfwlmjTqw6YfgvwHaHa?w=184&h=184&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Leather Belt" />
+                <div class="product-info">
+                    <h3 class="product-title">Leather Belt</h3>
+                    <p class="product-price">$45.99</p>
+                    <p class="product-rating">4.4 stars, 390 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- Row 3 -->
+            <article class="product-card" tabindex="0">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.7kt9ffKyf4vyhT_11pZv_gHaLW?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Women's Blazer" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Blazer</h3>
+                    <p class="product-price">$95.00</p>
+                    <p class="product-rating">4.7 stars, 600 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.vElJwrJAsyWVBpSu6UiXlgHaJ4?r=0&w=1500&h=2000&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Women's Skirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Skirt</h3>
+                    <p class="product-price">$54.99</p>
+                    <p class="product-rating">4.5 stars, 530 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://th.bing.com/th/id/OIP.Eov34ZwzYIR2lSOyYaXWEAHaHa?w=183&h=183&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Sneakers" />
+                <div class="product-info">
+                    <h3 class="product-title">Sneakers</h3>
+                    <p class="product-price">$88.99</p>
+                    <p class="product-rating">4.6 stars, 890 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://cdn.mos.cms.futurecdn.net/whowhatwear/posts/278168/shoulder-bag-trend-278168-1705969385861-main-1024-80.jpg"
+                    alt="Shoulder Bag" />
+                <div class="product-info">
+                    <h3 class="product-title">Shoulder Bag</h3>
+                    <p class="product-price">$70.00</p>
+                    <p class="product-rating">4.7 stars, 1,050 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://m.media-amazon.com/images/I/51F-x3Zno9S._SL500_.jpg" alt="Women's Hat" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Hat</h3>
+                    <p class="product-price">$35.50</p>
+                    <p class="product-rating">4.3 stars, 470 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://zigzag.lk/cdn/shop/files/CottonCollection-Web-12-A_581x.progressive.jpg?v=1758188099"
+                    alt="Women's Hat" />
+                <div class="product-info">
+                    <h3 class="product-title">Pintuck Detailed Polka Dot Printed Top</h3>
+                    <p class="product-price">$10.50</p>
+                    <p class="product-rating">4.3 stars, 470 ratings</p>
+                    <button class="btn-add-cart">Add to Cart</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            /* 5 cards per row */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .product-price {
+            color: #d4b483;
+            font-weight: bold;
+        }
+
+        .btn-add-cart {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            margin-top: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-add-cart:hover {
+            background: #d4b483;
+            color: #000;
+        }
+    </style>
+
+
+    <!-- CSS -->
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            /* 5 per row */
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #d4b483;
+        }
+
+        .btn-add-cart {
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-add-cart:hover {
+            background: #444;
+        }
+    </style>
+
+
+    <!-- Kids Section -->
+    <section id="kids" aria-label="Kids' Fashion" style="margin-top: 60px;">
+        <h2 class="section-title">Kids' Fashion</h2>
+        <div class="product-grid">
+            <article class="product-card" tabindex="0">
+                <img src="https://m.media-amazon.com/images/I/71Zoca9trgL._UY1000_.jpg" alt="Kids' Graphic T-Shirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids' Graphic T-Shirt</h3>
+                    <p class="product-price">$19.99</p>
+                    <p class="product-rating">4.8 stars, 150 ratings</p>
+                    <p class="product-delivery">Delivery: Tue, May 14 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Kids' Graphic T-Shirt to cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://static.nike.com/a/images/t_PDP_936_v1/f_auto%2Cq_auto%3Aeco/3cf09633-8d0d-4449-8a24-c0037a13b93c/RAIN%2BJACKET.png"
+                    alt="Kids' Waterproof Jacket" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids' Waterproof Jacket</h3>
+                    <p class="product-price">$39.99</p>
+                    <p class="product-rating">4.4 stars, 120 ratings</p>
+                    <p class="product-delivery">Delivery: Wed, May 15 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Kids' Waterproof Jacket to cart">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.aiwkckR06_OPTGiS7S1ocwHaKs?r=0&w=800&h=1155&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Kids' Running Shoes" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids' Running Shoes</h3>
+                    <p class="product-price">$29.99</p>
+                    <p class="product-rating">4.7 stars, 180 ratings</p>
+                    <p class="product-delivery">Delivery: Thu, May 16 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Kids' Running Shoes to cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.EYg04SwESNxHPusEleB2_AAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Kids' Party Dress" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids' Party Dress</h3>
+                    <p class="product-price">$34.99</p>
+                    <p class="product-rating">4.5 stars, 140 ratings</p>
+                    <p class="product-delivery">Delivery: Fri, May 17 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Kids' Party Dress to cart">Add to Cart</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section id="new-arrivals" aria-label="New Arrivals" style="margin-top: 60px;">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="product-grid">
+            <article class="product-card" tabindex="0">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.Fi7CYYTm_7sVSPokxucLKgHaJQ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Men's Slim Fit Polo Shirt" />
+                <div class="product-info">
+                    <h3 class="product-title">Men's Slim Fit Polo Shirt</h3>
+                    <p class="product-price">$54.99</p>
+                    <p class="product-rating">4.6 stars, 210 ratings</p>
+                    <p class="product-delivery">Delivery: Mon, May 20 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Men's Slim Fit Polo Shirt to cart">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://i5.walmartimages.com/asr/a75a9755-92e3-45a6-89da-ccfad696a798.4b175929ee12c1d4a9ca84b9728173c7.jpeg"
+                    alt="Women's Evening Gown" />
+                <div class="product-info">
+                    <h3 class="product-title">Women's Evening Gown</h3>
+                    <p class="product-price">$129.99</p>
+                    <p class="product-rating">4.9 stars, 95 ratings</p>
+                    <p class="product-delivery">Delivery: Tue, May 21 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Women's Evening Gown to cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.J2d6_JvNNneHUwgj86w5OAHaJ3?r=0&w=736&h=980&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Kids' Summer Shorts Set" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids' Summer Shorts Set</h3>
+                    <p class="product-price">$24.99</p>
+                    <p class="product-rating">4.7 stars, 130 ratings</p>
+                    <p class="product-delivery">Delivery: Wed, May 22 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Kids' Summer Shorts Set to cart">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" tabindex="0">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/81J3S5%2BKgeL.jpg"
+                    alt="Unisex Windbreaker Jacket" />
+                <div class="product-info">
+                    <h3 class="product-title">Unisex Windbreaker Jacket</h3>
+                    <p class="product-price">$79.99</p>
+                    <p class="product-rating">4.5 stars, 180 ratings</p>
+                    <p class="product-delivery">Delivery: Thu, May 23 - Ships worldwide</p>
+                    <button class="btn-add-cart" aria-label="Add Unisex Windbreaker Jacket to cart">Add to
+                        Cart</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+    <!-- Product Grid -->
+    <section aria-label="Products">
+        <h2 class="section-title">Featured Products</h2>
+
+        <div class="product-grid">
+            <!-- Card 1 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://images.pexels.com/photos/1707828/pexels-photo-1707828.jpeg"
+                        alt="Men's Formal Shirt" loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Men's Formal Shirt</h3>
+                    <div class="product-price">$54.99</div>
+                    <div class="product-rating">4.3 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg" alt="Men's Hoodie"
+                        loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Men's Hoodie</h3>
+                    <div class="product-price">$69.99</div>
+                    <div class="product-rating">4.5 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://images.pexels.com/photos/977599/pexels-photo-977599.jpeg" alt="Women's Sunglasses"
+                        loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Women's Sunglasses</h3>
+                    <div class="product-price">$39.50</div>
+                    <div class="product-rating">4.7 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg" alt="Women's Jacket"
+                        loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Women's Jacket</h3>
+                    <div class="product-price">$120.00</div>
+                    <div class="product-rating">4.8 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://images.pexels.com/photos/1520760/pexels-photo-1520760.jpeg" alt="Women's Handbag"
+                        loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Women's Handbag</h3>
+                    <div class="product-price">$85.99</div>
+                    <div class="product-rating">4.6 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg"
+                        alt="Women's Floral Summer Dress" loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Women's Floral Summer Dress</h3>
+                    <div class="product-price">$59.99</div>
+                    <div class="product-rating">4.5 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 7 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://xcdn.next.co.uk/common/items/default/default/itemimages/altitemzoom/q74596s.jpg?im=Resize,width=364"
+                        alt="Men's Casual Short-Sleeved Shirt" loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Men's Casual Short-Sleeved Shirt</h3>
+                    <div class="product-price">$47.94</div>
+                    <div class="product-rating">4.8 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 8 -->
+            <article class="product-card">
+                <div class="media">
+                    <img src="https://myer-media.com.au/wcsstore/MyerCatalogAssetStore/images/40/406/3664/200/5/123581980/123581980_2_360x464.webp"
+                        alt="Eric Abstract Short Sleeve Viscose Shirt" loading="lazy" class="thumb">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Eric Abstract Short Sleeve Viscose Shirt</h3>
+                    <div class="product-price">$69.72</div>
+                    <div class="product-rating">4.4 stars</div>
+                    <div class="card-actions">
+                        <button class="btn btn-block btn-primary add-cart">Add to cart</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- CSS -->
+    <style>
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* equal left & right spacing */
+            gap: 20px;
+            /* space between cards */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            flex: 1 1 calc(33.333% - 20px);
+            /* 3 per row */
+            max-width: 360px;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img.thumb {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+    </style>
+
+    <style>
+        /* Critical CSS (kept minimal for fast first paint) */
+
+        :root {
+            --brand: #131921;
+            --accent: #f0c140;
+            --muted: #999;
+            --bg: #f9f9f9
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1200px;
+            margin: 28px auto;
+            padding: 0 16px 60px
+        }
+
+        h2.section-title {
+            font-size: 1.6rem;
+            margin: 14px 0;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 6px;
+            color: var(--brand)
+        }
+
+        /* Controls */
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0 24px
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #eee;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .chip[aria-pressed="true"] {
+            background: var(--accent);
+            color: var(--brand)
+        }
+
+        /* GRID */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e9e9e9;
+            display: flex;
+            flex-direction: column
+        }
+
+        .media {
+            aspect-ratio: 16/11;
+            overflow: hidden
+        }
+
+        .media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .product-info {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1
+        }
+
+        .product-title {
+            font-weight: 700;
+            color: var(--brand);
+            margin: 0
+        }
+
+        .product-price {
+            color: var(--accent);
+            font-weight: 800
+        }
+
+        .card-actions {
+            margin-top: auto
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px
+        }
+
+        /* GALLERY LIGHTBOX */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 2000
+        }
+
+        .lightbox.open {
+            display: flex
+        }
+
+        .lightbox img {
+            max-width: calc(100% - 48px);
+            max-height: calc(100% - 48px);
+            object-fit: contain;
+            border-radius: 8px
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            font-size: 22px
+        }
+
+        /* CONTACT & FORM */
+
+        .contact {
+            background: #fff;
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid #eee
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px
+        }
+
+        .form-row input,
+        .form-row textarea {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd
+        }
+
+        .note {
+            font-size: .9rem;
+            color: var(--muted)
+        }
+
+        /* NEWSLETTER MODAL */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500
+        }
+
+        .modal.open {
+            display: flex
+        }
+
+        .modal-card {
+            background: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            max-width: 420px;
+            width: 100%
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: var(--brand);
+            color: #fff;
+            padding: 28px 16px;
+            text-align: center
+        }
+
+        /* Responsive */
+
+        @media (max-width:940px) {
+            .hero-inner {
+                grid-template-columns: 1fr
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .mobile-toggle {
+                display: inline-block
+            }
+        }
+
+        @media (max-width:520px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 12px
+            }
+
+            .hero-copy h1 {
+                font-size: 1.6rem
+            }
+        }
+    </style>
+    </head>
+
+
+    <!-- Add more product-cards as needed (kept compact here) -->
+
+    </div>
+    </section>
+
+    <!-- Contact & Newsletter area -->
+    <section class="contact-wrap" aria-label="Contact and newsletter">
+        <div class="contact-col">
+            <h2 class="section-title" id="contactHeading">Contact Us</h2>
+
+            <div class="contact-card" role="region" aria-labelledby="contactHeading">
+                <p class="section-subtitle">
+                    Send us a message and we’ll get back to you within 24–48 hours.
+                </p>
+
+                <form id="contactForm" class="form" novalidate>
+                    <div class="field">
+                        <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+                        <input id="name" name="name" type="text" autocomplete="name" required aria-required="true"
+                            placeholder="e.g., John Perera" />
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+                        <input id="email" name="email" type="email" autocomplete="email" required aria-required="true"
+                            placeholder="you@example.com" />
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+                        <textarea id="message" name="message" rows="5" required aria-required="true"
+                            placeholder="Tell us what you need help with..."></textarea>
+                    </div>
+
+                    <!-- reCAPTCHA stub (replace with real key on server) -->
+                    <p class="helper-text" aria-label="reCAPTCHA note">
+                        reCAPTCHA placeholder — integrate Google reCAPTCHA (v2 or v3) on the server side.
+                    </p>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" type="submit">Send message</button>
+                        <button class="btn btn-ghost" type="reset">Reset</button>
+                    </div>
+
+                    <div id="contactResult" class="status" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+
+        <aside class="newsletter-col" aria-label="Newsletter subscription">
+            <h2 class="section-title" id="newsletterHeading">Newsletter</h2>
+
+            <div class="contact-card" role="region" aria-labelledby="newsletterHeading">
+                <p class="section-subtitle">
+                    Join our mailing list and get <strong>10% off</strong> your first purchase.
+                </p>
+
+                <form id="newsletterForm" class="form" novalidate>
+                    <div class="field">
+                        <label for="newsletterEmail">Email address <span class="req" aria-hidden="true">*</span></label>
+                        <input id="newsletterEmail" name="newsletterEmail" type="email" autocomplete="email" required
+                            placeholder="email@example.com" />
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                        <button class="btn btn-ghost" id="openNewsletterAlt" type="button" aria-haspopup="dialog"
+                            aria-controls="newsletterModal">
+                            More options
+                        </button>
+                    </div>
+
+                    <div id="newsletterResult" class="status" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </aside>
+    </section>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true" aria-label="Image lightbox">
+    <button class="close" id="lbClose" aria-label="Close lightbox">✕</button>
+    <button class="prev" aria-label="Previous image" type="button">◀</button>
+    <img src="" alt="" id="lbImage" />
+    <button class="next" aria-label="Next image" type="button">▶</button>
+</div>
+
+<!-- NEWSLETTER MODAL -->
+<div class="modal" id="newsletterModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+    <div class="modal-card" role="document">
+        <h3 id="modalTitle">Subscribe to our Newsletter</h3>
+        <p class="section-subtitle">Enter your email to receive exclusive offers.</p>
+
+        <form id="modalNewsletterForm" class="form" novalidate>
+            <div class="field">
+                <label for="modalEmail">Email address <span class="req" aria-hidden="true">*</span></label>
+                <input id="modalEmail" name="modalEmail" type="email" autocomplete="email"
+                    placeholder="email@example.com" required />
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">Subscribe</button>
+                <button type="button" id="closeModal" class="btn btn-ghost">Close</button>
+            </div>
+
+            <div id="modalResult" class="status" role="status" aria-live="polite"></div>
+        </form>
+    </div>
+</div>
+<style>
+    /* Layout */
+
+    .contact-wrap {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 18px;
+        align-items: start;
+    }
+
+    @media (max-width: 900px) {
+        .contact-wrap {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Card */
+
+    .contact-card {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+    }
+
+    /* Typography - ensure visible */
+
+    .section-title {
+        color: #0f172a;
+        margin: 0 0 10px;
+    }
+
+    .section-subtitle {
+        color: #334155;
+        margin: 0 0 12px;
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    label {
+        color: #0f172a;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .req {
+        color: #dc2626;
+    }
+
+    /* Form fields */
+
+    .form {
+        display: grid;
+        gap: 12px;
+    }
+
+    .field {
+        display: grid;
+        gap: 6px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        color: #0f172a;
+        /* text color visible */
+        background: #ffffff;
+        /* background visible */
+        border: 1px solid rgba(15, 23, 42, .18);
+        border-radius: 12px;
+        padding: 10px 12px;
+        outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #64748b;
+        /* placeholder visible */
+        opacity: 1;
+        /* avoid hidden placeholder */
+    }
+
+    input:focus,
+    textarea:focus {
+        border-color: rgba(37, 99, 235, .55);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, .15);
+    }
+
+    /* Buttons area */
+
+    .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 2px;
+    }
+
+    /* Helper + status */
+
+    .helper-text {
+        color: #64748b;
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .status {
+        color: #0f172a;
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    /* Lightbox buttons: ensure visible */
+
+    .lightbox .prev,
+    .lightbox .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, .35);
+        border: 1px solid rgba(255, 255, 255, .25);
+        color: #fff;
+        font-size: 20px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .lightbox .prev {
+        left: 20px;
+    }
+
+    .lightbox .next {
+        right: 20px;
+    }
+</style>
+<footer>
+    <div
+        style="max-width:1200px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:8px;align-items:center">
+        <div>&copy; 2025 Clothing Retailer. All rights reserved.</div>
+        <div>Contact: <a href="mailto:support@clothingretailer.com">support@clothingretailer.com</a> | Phone: +1 (555)
+            123-4567
+        </div>
+        <div>Follow us: <a href="#" aria-label="Facebook">Facebook</a> · <a href="#"
+                aria-label="Instagram">Instagram</a></div>
+    </div>
+</footer>
+
+<!-- Analytics stub (replace with real snippet) -->
+<script>
+    window.APP = window.APP || {};
+    APP.analyticsEnabled = false; // toggle for production
+    APP.track = function (event, data) {
+        if (!APP.analyticsEnabled) return;
+        console.log('TRACK', event, data);
+        // integrate Google Analytics / GA4 / Matomo here
+    };
+</script>
+
+<script>
+    // --- UI Interactions: mobile menu, sticky behavior, filters, gallery, forms ---
+    (function () {
+        const nav = document.getElementById('siteNav');
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        // Mobile toggle
+        navToggle && navToggle.addEventListener('click', () => {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !expanded);
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+            }
+        });
+
+        // Sticky transparent -> solid
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) nav.classList.add('solid');
+            else nav.classList.remove('solid');
+        });
+
+        // Filters
+        const chips = document.querySelectorAll('.chip');
+        const grid = document.getElementById('productGrid');
+        chips.forEach(ch => ch.addEventListener('click', () => {
+            chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+            ch.setAttribute('aria-pressed', 'true');
+            const filter = ch.dataset.filter;
+            filterProducts(filter);
+        }));
+
+        function filterProducts(filter) {
+            const cards = grid.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const cats = card.dataset.category.split(' ');
+                if (filter === 'all' || cats.includes(filter)) card.style.display = '';
+                else card.style.display = 'none';
+            });
+        }
+
+        // Lightbox gallery (collect all images in grid)
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImage');
+        const lbClose = document.getElementById('lbClose');
+        const openGalleryBtns = [document.getElementById('openGallery'), document.getElementById('openNewsletterAlt')];
+        const productThumbs = document.querySelectorAll('.product-card .thumb');
+        let gallery = Array.from(productThumbs).map(img => img.src);
+        let current = 0;
+
+        productThumbs.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+        document.getElementById('openGallery').addEventListener('click', () => openLightbox(0));
+
+        function openLightbox(index) {
+            current = index;
+            lbImg.src = gallery[current];
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lightbox.querySelector('.prev').addEventListener('click', () => {
+            current = (current - 1 + gallery.length) % gallery.length;
+            lbImg.src = gallery[current];
+        });
+        lightbox.querySelector('.next').addEventListener('click', () => {
+            current = (current + 1) % gallery.length;
+            lbImg.src = gallery[current];
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') {
+                current = (current - 1 + gallery.length) % gallery.length;
+                lbImg.src = gallery[current];
+            }
+            if (e.key === 'ArrowRight') {
+                current = (current + 1) % gallery.length;
+                lbImg.src = gallery[current];
+            }
+        });
+
+        // Simple cart simulation
+        document.querySelectorAll('.add-cart').forEach(btn => btn.addEventListener('click', (e) => {
+            const title = e.target.closest('.product-card').querySelector('.product-title').textContent;
+            APP.track('add_to_cart', {
+                item: title
+            });
+            alert(title + ' added to cart (demo)');
+        }));
+
+        // Contact form handling (stubbed endpoint)
+        const contactForm = document.getElementById('contactForm');
+        const contactResult = document.getElementById('contactResult');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!contactForm.checkValidity()) {
+                contactResult.textContent = 'Please fill all required fields correctly.';
+                return;
+            }
+            // Simulate async submit
+            contactResult.textContent = 'Sending...';
+            setTimeout(() => {
+                contactResult.textContent = 'Message sent — we will respond within 48 hours.';
+                contactForm.reset();
+                APP.track('contact_submit', {
+                    email: document.getElementById('email').value
+                });
+            }, 800);
+        });
+
+        // Newsletter forms (modal & inline)
+        const newsletterForm = document.getElementById('newsletterForm');
+        const modalForm = document.getElementById('modalNewsletterForm');
+        const newsletterResult = document.getElementById('newsletterResult');
+        const modalResult = document.getElementById('modalResult');
+        const modal = document.getElementById('newsletterModal');
+        const openModalBtn = document.getElementById('openNewsletter');
+        const openAlt = document.getElementById('openNewsletterAlt');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        function openModal() {
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+        openModalBtn && openModalBtn.addEventListener('click', openModal);
+        openAlt && openAlt.addEventListener('click', openModal);
+        closeModalBtn && closeModalBtn.addEventListener('click', closeModal);
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            if (!email) {
+                newsletterResult.textContent = 'Enter a valid email';
+                return;
+            }
+            newsletterResult.textContent = 'Subscribed — check your email for confirmation.';
+            APP.track('newsletter_subscribe', {
+                email
+            });
+            newsletterForm.reset();
+        });
+
+        modalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('modalEmail').value;
+            if (!email) {
+                modalResult.textContent = 'Enter a valid email';
+                return;
+            }
+            modalResult.textContent = 'Subscribed — check your email.';
+            APP.track('newsletter_subscribe', {
+                email
+            });
+            modalForm.reset();
+        });
+
+        // Accessibility: focus trap for modal (basic)
+        modal.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+    })();
+</script>
+<script>
+    // Sticky navbar on scroll
+    window.onscroll = function () {
+        const navbar = document.getElementById('myNavbar');
+        if (window.pageYOffset >= 100) {
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+        }
+    };
+</script>
+</body>
+
+</html>
